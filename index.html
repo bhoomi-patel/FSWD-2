@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <aside
+        class="bg-gray-800 text-white min-h-screen fixed top-0 left-0 transition-transform duration-300 transform -translate-x-full lg:translate-x-0 lg:w-64 z-10"
+        id="menu">
+        <div class="flex flex-col justify-between h-full px-5 py-8"  id="sidebar-content">
+      <div class="top">
+        <div class=" text-2xl">
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+             </svg>
+             <span class="ms-3">Dashboard</span>
+          </a></div>
+       
+       <hr>
+        <ul class="mt-10 space-y-4 lg:mt-0 flex flex-col  p-12">
+          <li><a href="#" class="block p-2 hover:bg-gray-700 "><i class="ri-home-fill"></i>Home</a></li>
+            <li><a href="#" class="block p-2 hover:bg-gray-700 "><i class="ri-award-fill"></i>Courses</a></li>
+            <li><a href="#" class="block p-2 hover:bg-gray-700 "><i class="ri-heart-fill"></i>Favorites</a></li>
+            <li><a href="#" class="block p-2 hover:bg-gray-700 "><i class="ri-book-fill"></i>Bookmarks</a></li>
+        </ul>
+      </div>
+      <hr>
+
+        <div class="logout  flex justify-center text-xl py-5">
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+               <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
+               <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"/>
+               <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"/>
+            </svg>
+            <span class="flex-1 ms-3 whitespace-nowrap ">Logout</span>
+         </a>
+        
+        </div>
+        </div>
+    </aside>
+  
+  <!-- Page Content -->
+  <main class="lg:ml-16 lg:ml-64">
+    <header class="bg-white shadow-lg p-4 lg:px-8 lg:py-4 lg:sticky lg:top-0 lg:z-20 flex justify-between p-5">
+
+      <div class="flex items-center">
+        <div class="w-auto text-left">
+          <input type="text" class="w-full border rounded p-2" placeholder="Search ...">
+        </div>
+      </div>
+
+      <button id="toggleSidebar" data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <span class="sr-only">Open sidebar</span>
+        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+        </svg>
+    </button>
+
+    </header>
+    <!--course-->
+    <section class="w-auto mt-10 p-5">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 ">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h1 class="font-bold text-xl">200+</h1>
+          <div>Total Courses</div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-4">
+          <h1 class="font-bold text-xl">100+</h1>
+          <div>Tutorials</div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-4">
+          <h1 class="font-bold text-xl">50+</h1>
+          <div>Hand-On Real World Projects</div>
+        </div>
+
+      </div>
+
+    </section>
+    <!--corses detail-->
+    <section>
+      <h2 class="text-2xl font-semibold mt-8 mx-5 "><u>My Course Progress</u></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  m-5">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-xl font-semibold">Web Development</h3>
+          <p>Web development courses teach essential skills for creating and maintaining websites, helps to create
+            both
+            front-end (HTML, CSS, JavaScript) and back-end (server-side languages, databases) development. </p>
+          <p class="font-bold pt-5">Completion: <span id="course1Progress">75%</span></p>
+          <button class="bg-blue-500 text-white rounded p-2 mt-2 w-full">View Course </button>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-xl font-semibold">UI/UX Design</h3>
+          <p>UI/UX design courses focus on creating user-friendly and visually appealing interfaces for websites and
+            applications. They cover user experience(UX), interaction design, and visual design(UI).</p>
+          <p class="font-bold pt-5">Completion: <span id="course2Progress">50%</span></p>
+          <button class="bg-blue-500 text-white rounded p-2 mt-2 w-full">View Course </button>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-xl font-semibold">Cyber security</h3>
+          <p>Cybersecurity courses cover essential topics such as network security, threat detection, and risk
+            management .These courses including security analyst as well as penetration tester and incident responder.
+          </p>
+          <p class="font-bold pt-5">Completion: <span id="course3Progress">30%</span></p>
+          <button class="bg-blue-500 text-white rounded p-2 mt-2 w-full">View Course </button>
+        </div>
+      </div>
+    </section>
+
+    <!--project-->
+    <section>
+      <h2 class="text-2xl font-semibold mt-8 mx-5"><u>My Project Progress</u></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4  m-5">
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-xl font-semibold">TIC-TAC-TOE GAME</h3>
+          <p>It is a simple game of two players, X and O, who take turns marking a square on a 3x3 grid.
+            The first player to get three in a row (horizontally, vertically, or diagonally)
+            wins the game.This is basic mini project to understand the game logic and understand concept of HTML, CSS,
+            JAVASCRIPT.</p>
+          <p class="font-bold pt-5">progress: <span id="course3Progress">80%</span></p>
+          <button class="bg-blue-500 text-white rounded p-2 mt-2 w-full">Continue project </button>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-xl font-semibold">E-COMMERCE WEBSITE</h3>
+          <p>It is a simple e-commerce website that allows users to browse products, add items to their cart and
+            checkout. The website also includes a login and registration system for users.customer reviews,
+            personalized
+            recommendations, and responsive design for optimal performance across devices.
+          <p class="font-bold pt-5">progress: <span id="course3Progress">45%</span></p>
+          <button class="bg-blue-500 text-white rounded p-2 mt-2 w-full">Continue project </button>
+        </div>
+      </div>
+    </section>
+
+    <!--activity-->
+    <section class="mt-8 p-5">
+      <h2 class="text-xl font-bold mb-4">Learning Progress</h2>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="p-3 text-left">Topic</th>
+              <th class="p-3 text-left">Status</th>
+              <th class="p-3 text-left">Outcomes(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b">HTML</td>
+              <td class="p-3 border-b text-green-500">Completed</td>
+              <td class="p-3 border-b">100%</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b">CSS</td>
+              <td class="p-3 border-b text-green-500">Completed</td>
+              <td class="p-3 border-b">95%</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b">JS</td>
+              <td class="p-3 border-b text-gray-500">In Progress</td>
+              <td class="p-3 border-b">75%</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b">PHP</td>
+              <td class="p-3 border-b text-gray-500">In Progress</td>
+              <td class="p-3 border-b">70%</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b">PYTHON</td>
+              <td class="p-3 border-b text-red-500">Not Started</td>
+              <td class="p-3 border-b">0%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const sidebar = document.getElementById('menu');
+    const toggleSidebar = document.getElementById('toggleSidebar');
+
+    toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+    });
+</script>
+</body>
+
+</html>
